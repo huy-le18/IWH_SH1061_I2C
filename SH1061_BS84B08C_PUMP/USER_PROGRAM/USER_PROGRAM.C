@@ -15,6 +15,7 @@
 
 #define MAX_SWITCH_TEMP 6
 
+#define COM_TIMEOUT		20
 
 volatile unsigned char buttonIndexArr[MAX_BUTTON];
 unsigned char btnPressed;
@@ -120,6 +121,8 @@ void USER_PROGRAM() {
   		u8_temp_fb = data_handle[1];
   	}
   	b_flag_i2c_receive = 0;
+  	
+  	comm_timeout_cnt = 0;
   }  
   
   
@@ -128,19 +131,25 @@ void USER_PROGRAM() {
   {
   	b_flag_2ms = 0;
   	
+  	if(comm_timeout_cnt < COM_TIMEOUT)   // 2s
+  	{
   				/*process main programer*/
-	switch (deviceMode)
-	{
-	  case DEVICE_MODE_START:
-		mode_start_program();
-		break;
-	  case DEVICE_MODE_TEST:
-		mode_test_program();
-		break;
-	  case DEVICE_MODE_POWER:
-		mode_power_program();
-		break;
+		switch (deviceMode)
+		{
+		  case DEVICE_MODE_START:
+			mode_start_program();
+			break;
+		  case DEVICE_MODE_TEST:
+			mode_test_program();
+			break;
+		  case DEVICE_MODE_POWER:
+			mode_power_program();
+			break;
+		}
 	}
+  	else
+  	{
+  	}
   }
   
   if(b_flag_10ms == 1)
@@ -191,6 +200,16 @@ void USER_PROGRAM() {
   	b_flag_100ms = 0;
 	
   	g_pressBt = button_detect_release();
+  	
+  	comm_timeout_cnt++;
+  	if(comm_timeout_cnt < COM_TIMEOUT)   // 2s
+  	{
+  	}
+  	else
+  	{
+  		setSeg12(0x0E, 0);
+		update(); 
+  	}
   }
   
   if(b_flag_500ms == 1)

@@ -38,38 +38,38 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      00h     056bh     0593h    0029h      CODE               _mode_power_off_program (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\USER_PROGRAM.OBJ)
      00h     0594h     06a6h    0113h      CODE               _mode_power_on_program (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\USER_PROGRAM.OBJ)
      00h     06a7h     06f7h    0051h      CODE               _mode_power_program (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\USER_PROGRAM.OBJ)
-     00h     06f8h     077ah    0083h      CODE               _USER_PROGRAM (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\USER_PROGRAM.OBJ)
-     00h     077bh     0783h    0009h      CODE               _TIMER_Init (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
-     00h     0784h     0797h    0014h      CODE               _I2C_init (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
-     00h     0798h     07aah    0013h      CODE               _IO_Init (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
-     00h     07abh     07b5h    000bh      CODE               _set_buzzer_on (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
-     00h     07b6h     07b7h    0002h      CODE               _set_buzzer_off_forever (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
-     00h     07b8h     0829h    0072h      CODE               _timer_ISR (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\ISR.OBJ)
-     00h     082ah     086dh    0044h      CODE               _i2c_ISR (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\ISR.OBJ)
-     00h     086eh     0889h    001ch      CODE               _button_detect_press (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\SCAN_BUTTON.OBJ)
-     00h     088ah     0896h    000dh      CODE               _button_detect_release (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\SCAN_BUTTON.OBJ)
-     00h     0897h     089ch    0006h      CODE               _clear (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     089dh     08a7h    000bh      CODE               _min (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     08a8h     08b2h    000bh      CODE               _max (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     08b3h     090bh    0059h      CODE               _setSeg12 (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     090ch     090dh    0002h      CODE               _setLedELCB (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     090eh     090fh    0002h      CODE               _setLedPump (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     0910h     0914h    0005h      CODE               _clearSeg12 (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     0915h     0916h    0002h      CODE               _clearLedELCB (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     0917h     0918h    0002h      CODE               _clearLedPump (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     0919h     092ch    0014h      CODE               _send (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     092dh     093bh    000fh      CODE               _sendData (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     093ch     0950h    0015h      CODE               _update (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     0951h     0958h    0008h      CODE               _sendCommand (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     0959h     096eh    0016h      CODE               _begin (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     096fh     0990h    0022h      CODE               _TM1628_init (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     0991h     099ah    000ah      CODE               __DELAYX (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
-     00h     099bh     09b3h    0019h      CODE               _builtin_holtek_divmodqi4_isr00 (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
-     00h     09b4h     09c3h    0010h      CODE               _CROM2PROM (CROM2PROM)
+     00h     06f8h     0788h    0091h      CODE               _USER_PROGRAM (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\USER_PROGRAM.OBJ)
+     00h     0789h     0791h    0009h      CODE               _TIMER_Init (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
+     00h     0792h     07a5h    0014h      CODE               _I2C_init (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
+     00h     07a6h     07b8h    0013h      CODE               _IO_Init (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
+     00h     07b9h     07c3h    000bh      CODE               _set_buzzer_on (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
+     00h     07c4h     07c5h    0002h      CODE               _set_buzzer_off_forever (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
+     00h     07c6h     0837h    0072h      CODE               _timer_ISR (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\ISR.OBJ)
+     00h     0838h     087bh    0044h      CODE               _i2c_ISR (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\ISR.OBJ)
+     00h     087ch     0897h    001ch      CODE               _button_detect_press (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\SCAN_BUTTON.OBJ)
+     00h     0898h     08a4h    000dh      CODE               _button_detect_release (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\SCAN_BUTTON.OBJ)
+     00h     08a5h     08aah    0006h      CODE               _clear (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     08abh     08b5h    000bh      CODE               _min (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     08b6h     08c0h    000bh      CODE               _max (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     08c1h     0919h    0059h      CODE               _setSeg12 (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     091ah     091bh    0002h      CODE               _setLedELCB (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     091ch     091dh    0002h      CODE               _setLedPump (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     091eh     0922h    0005h      CODE               _clearSeg12 (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     0923h     0924h    0002h      CODE               _clearLedELCB (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     0925h     0926h    0002h      CODE               _clearLedPump (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     0927h     093ah    0014h      CODE               _send (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     093bh     0949h    000fh      CODE               _sendData (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     094ah     095eh    0015h      CODE               _update (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     095fh     0966h    0008h      CODE               _sendCommand (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     0967h     097ch    0016h      CODE               _begin (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     097dh     099eh    0022h      CODE               _TM1628_init (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     099fh     09a8h    000ah      CODE               __DELAYX (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     09a9h     09c1h    0019h      CODE               _builtin_holtek_divmodqi4_isr00 (C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x\LIB\LIBHOLTEKGCC.LIB)
+     00h     09c2h     09d1h    0010h      CODE               _CROM2PROM (CROM2PROM)
      00h     0060h     007ch    001dh      DATA     0.2758    CTOUCH_DATA0 (C:\Users\HUYLE~1\AppData\Local\Temp\BS84B08C_CTOUCH_V512.OBJ)
      00h     007dh     0085h    0009h      DATA     17.667    MAIN_DATA (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\MAIN_PROGRAM_V300.OBJ)
      00h     0086h     0089h    0004h      DATA     6         @HCCINIT (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\USER_PROGRAM.OBJ)
-     00h     008ah     00a4h    001bh      DATA     3.5556    @HCCINIT0 (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\USER_PROGRAM.OBJ)
+     00h     008ah     00a4h    001bh      DATA     3.7037    @HCCINIT0 (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\USER_PROGRAM.OBJ)
      00h     00a5h     00a9h    0005h      DATA     18.2      @BITDATASEC (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\USER_PROGRAM.OBJ)
      00h     00aah     00afh    0006h      DATA     3.3333    @HCCINIT (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\ISR.OBJ)
      00h     00b0h     00b9h    000ah      DATA     2.2       @HCCINIT0 (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\ISR.OBJ)
@@ -103,7 +103,7 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      00h     00d2h     00d2h    0000h      LOCAL    0         _I2C_init (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
      00h     00d2h     00d2h    0000h      LOCAL    0         _IO_Init (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
      00h     00d2h     00d2h    0000h      LOCAL    0         _setLedELCB (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
-     00h     00d2h     00d4h    0003h      LOCAL    9.3333    _setSeg12 (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
+     00h     00d2h     00d4h    0003h      LOCAL    9.6667    _setSeg12 (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\TM1628.OBJ)
      00h     00d2h     00d3h    0002h      LOCAL    8         _set_buzzer_on (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\DRIVER_APP.OBJ)
      00h     00d7h     00d7h    0001h      LOCAL    2         _USER_PROGRAM (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\USER_PROGRAM.OBJ)
      00h     00d7h     00d7h    0000h      LOCAL    0         _mode_power_program (c:\users\huy le\documents\vshome\sonha\iwh_sh_i2c\sh1061_no_pump\sh1061_bs84b08c_pump\OUTPUT\USER_PROGRAM.OBJ)
@@ -167,8 +167,8 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      00dfh              _BS84B08C_CTOUCH_INITIAL
      04d7h              _CRC8
      00d2h              _CRC8_2
-     09b4h              _Crom2Prom
-     09b4h              _Crom2PromNext
+     09c2h              _Crom2Prom
+     09c2h              _Crom2PromNext
      007dh              _DATA_BUF
      04c9h              _ERROR_DATA
      04c8h              _ERROR_E2
@@ -185,8 +185,8 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      0056h              _GET_REF_VALUE
      0060h              _GLOBE_VARIES
      0085h              _HALT_STATE
-     0784h              _I2C_init
-     0798h              _IO_Init
+     0792h              _I2C_init
+     07a6h              _IO_Init
      006bh              _KEY_DATA
      006ah              _KEY_IO_SEL
      0180h              _KEY_REF
@@ -201,7 +201,7 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      0492h              _SET_KEY_THR
      0063h              _STANDBY_TIME
      0064h              _STANDBY_TIME_CTRL
-     077bh              _TIMER_Init
+     0789h              _TIMER_Init
      01a8h              _TKM_RESET
      007bh[5]           _TKS_250MSF
      007bh[6]           _TKS_500MSF
@@ -209,7 +209,7 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      007bh[1]           _TKS_ACTIVEF
      007bh              _TKS_FLAGA
      0065h              _TKS_TIME_BASE
-     096fh              _TM1628_init
+     097dh              _TM1628_init
      0045h              _TOUCHKEYRAMRESET
      007ch[0]           _TOUCH_POWER_SAVEF
      06f8h              _USER_PROGRAM
@@ -217,13 +217,13 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      0003h              _USER_PROGRAM_HALT_WAKEUP
      04f9h              _USER_PROGRAM_INITIAL
      0004h              _USER_PROGRAM_RETURN_MAIN
-     0994h              __DELAYX0
-     0993h              __DELAYX1
-     0993h              __DELAYX2
-     0992h              __DELAYX3
-     0992h              __DELAYX4
-     0991h              __DELAYX5
-     0991h              __DELAYX6
+     09a2h              __DELAYX0
+     09a1h              __DELAYX1
+     09a1h              __DELAYX2
+     09a0h              __DELAYX3
+     09a0h              __DELAYX4
+     099fh              __DELAYX5
+     099fh              __DELAYX6
      0142h              __LOAD_BALCAP
      00a7h[1]           _b_flag100msInPower
      00a6h[5]           _b_flag100msInPowerOn
@@ -260,7 +260,7 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      00a5h[7]           _b_tonggle_E2_in_mode_test
      00a5h[6]           _b_tonggle_E3_in_mode_reset
      00a5h[5]           _b_tonggle_temp_in_mode_power_on
-     0959h              _begin
+     0967h              _begin
      00d5h              _begin_2
      00a5h[1]           _bit_7seg_E2_tonggle
      00a5h[2]           _bit_7seg_temp_tonggle
@@ -268,15 +268,15 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      00a1h              _btnPressed
      0092h              _buff_dem
      00bah              _buffer
-     099bh              _builtin_holtek_udivmodqi4_isr00
+     09a9h              _builtin_holtek_udivmodqi4_isr00
      00d6h              _builtin_holtek_udivmodqi4_isr00_2
      00a2h              _buttonIndexArr
-     086eh              _button_detect_press
-     088ah              _button_detect_release
-     0897h              _clear
-     0915h              _clearLedELCB
-     0917h              _clearLedPump
-     0910h              _clearSeg12
+     087ch              _button_detect_press
+     0898h              _button_detect_release
+     08a5h              _clear
+     0923h              _clearLedELCB
+     0925h              _clearLedPump
+     091eh              _clearSeg12
      0097h              _comm_timeout_cnt
      00adh              _dat1
      00ach              _dat2
@@ -285,11 +285,11 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      0086h              _deviceModePower
      0091h              _flag_button
      008ah              _g_pressBt
-     082ah              _i2c_ISR
+     0838h              _i2c_ISR
      008eh              _leg7seg_error_check
      0098h              _machine_state
-     08a8h              _max
-     089dh              _min
+     08b6h              _max
+     08abh              _min
      056bh              _mode_power_off_program
      0594h              _mode_power_on_program
      06a7h              _mode_power_program
@@ -300,20 +300,20 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      0094h              _pulse_pre
      009eh              _s_rx_data
      009bh              _s_tx_data
-     0919h              _send
-     0951h              _sendCommand
-     092dh              _sendData
-     090ch              _setLedELCB
-     090eh              _setLedPump
-     08b3h              _setSeg12
-     07b6h              _set_buzzer_off_forever
-     07abh              _set_buzzer_on
+     0927h              _send
+     095fh              _sendCommand
+     093bh              _sendData
+     091ah              _setLedELCB
+     091ch              _setLedPump
+     08c1h              _setSeg12
+     07c4h              _set_buzzer_off_forever
+     07b9h              _set_buzzer_on
      0005h              _set_buzzer_on_forever
      008fh              _switch_temp_cnt
      0093h              _temp_set
      008ch              _time_check_reset
      008dh              _time_check_test
-     07b8h              _timer_ISR
+     07c6h              _timer_ISR
      00aeh              _u16_timer_for_buzzer
      00b5h              _u8_100ms_timer_counter
      00b6h              _u8_10ms_timer_counter
@@ -328,7 +328,7 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      00b1h              _u8_data_i2c
      0090h              _u8_temp_fb
      00b9h              _u8_timer_int_counter
-     093ch              _update
+     094ah              _update
      00cdh              r10c
      00d0h              r110
      00ceh              r20c
@@ -504,45 +504,45 @@ Input Library File: C:\Program Files\Holtek MCU Development Tools\HT-IDE3000V8.x
      0594h              _mode_power_on_program
      06a7h              _mode_power_program
      06f8h              _USER_PROGRAM
-     077bh              _TIMER_Init
-     0784h              _I2C_init
-     0798h              _IO_Init
-     07abh              _set_buzzer_on
-     07b6h              _set_buzzer_off_forever
-     07b8h              _timer_ISR
-     082ah              _i2c_ISR
-     086eh              _button_detect_press
-     088ah              _button_detect_release
-     0897h              _clear
-     089dh              _min
-     08a8h              _max
-     08b3h              _setSeg12
-     090ch              _setLedELCB
-     090eh              _setLedPump
-     0910h              _clearSeg12
-     0915h              _clearLedELCB
-     0917h              _clearLedPump
-     0919h              _send
-     092dh              _sendData
-     093ch              _update
-     0951h              _sendCommand
-     0959h              _begin
-     096fh              _TM1628_init
-     0991h              __DELAYX5
-     0991h              __DELAYX6
-     0992h              __DELAYX3
-     0992h              __DELAYX4
-     0993h              __DELAYX1
-     0993h              __DELAYX2
-     0994h              __DELAYX0
-     099bh              _builtin_holtek_udivmodqi4_isr00
-     09b4h              _Crom2Prom
-     09b4h              _Crom2PromNext
+     0789h              _TIMER_Init
+     0792h              _I2C_init
+     07a6h              _IO_Init
+     07b9h              _set_buzzer_on
+     07c4h              _set_buzzer_off_forever
+     07c6h              _timer_ISR
+     0838h              _i2c_ISR
+     087ch              _button_detect_press
+     0898h              _button_detect_release
+     08a5h              _clear
+     08abh              _min
+     08b6h              _max
+     08c1h              _setSeg12
+     091ah              _setLedELCB
+     091ch              _setLedPump
+     091eh              _clearSeg12
+     0923h              _clearLedELCB
+     0925h              _clearLedPump
+     0927h              _send
+     093bh              _sendData
+     094ah              _update
+     095fh              _sendCommand
+     0967h              _begin
+     097dh              _TM1628_init
+     099fh              __DELAYX5
+     099fh              __DELAYX6
+     09a0h              __DELAYX3
+     09a0h              __DELAYX4
+     09a1h              __DELAYX1
+     09a1h              __DELAYX2
+     09a2h              __DELAYX0
+     09a9h              _builtin_holtek_udivmodqi4_isr00
+     09c2h              _Crom2Prom
+     09c2h              _Crom2PromNext
 
 
 ROM Usage Statistics
      Size      Used     Percentage
-     0c00h     09c3h    81%
+     0c00h     09d1h    81%
 
 RAM Usage Statistics
     Bank      Size      Used     Percentage
@@ -634,6 +634,11 @@ Call Tree
         _set_buzzer_on (0)
         _button_detect_release (0)
             _GET_KEY_BITMAP (1)
+        _setSeg12 (0)
+            _Crom2Prom (1)
+        _update (0)
+            _sendData (1)
+                _send (2)
     @dummy12
         _timer_ISR (0)
     @dummy16
