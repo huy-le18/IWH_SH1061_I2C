@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   ISR                                                               04/15/2024 16:51:39 PAGE 1   
+C51 COMPILER V9.60.7.0   ISR                                                               04/16/2024 15:36:26 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE ISR
@@ -62,7 +62,7 @@ line level    source
   47          volatile uint8_t count12ms = 0;
   48          
   49          volatile uint8_t triac_pulse_cnt;
-C51 COMPILER V9.60.7.0   ISR                                                               04/15/2024 16:51:39 PAGE 2   
+C51 COMPILER V9.60.7.0   ISR                                                               04/16/2024 15:36:26 PAGE 2   
 
   50          volatile uint8_t num_active_pulse;           // power from 0 to 20
   51          volatile uint8_t num_active_pulse_with_add;  // from 0 to 20
@@ -72,275 +72,304 @@ line level    source
   55          volatile uint8_t additionInterval;
   56          volatile uint16_t u16NumActive;  // raw number of active pulse * 10
   57          
-  58          
-  59          void Timer3_ISR(void) interrupt 16        // Vector @  0x83
-  60          {
-  61   1        _push_(SFRS);
-  62   1        clr_T3CON_TF3;
-  63   1        u16_timer3_int_counter ++;  
-  64   1        u8_flag_200us = 1;
-  65   1        
-  66   1        //---1ms-------------------------------------------
-  67   1        if(u16_timer3_int_counter >= C_1MS_CNT_VALUE){            //1ms
-  68   2          u16_timer3_int_counter = 0; 
-  69   2          u16_1ms_timer_counter ++;
-  70   2          u8_flag_1ms = 1;
-  71   2        }
-  72   1        //---2ms-------------------------------------------
-  73   1          if(u16_1ms_timer_counter >= 2){                         //2ms
-  74   2          u16_1ms_timer_counter = 0;
-  75   2          u16_2ms_timer_counter ++; 
-  76   2          u8_flag_2ms = 1;      
-  77   2        }
-  78   1          
-  79   1        
-  80   1        //---10ms-------------------------------------------
-  81   1        if(u16_2ms_timer_counter >= 5){                         //10ms
-  82   2          u16_2ms_timer_counter = 0;
-  83   2          u16_10ms_time_counter ++; 
-  84   2          u8_flag_10ms = 1;     
-  85   2        }
-  86   1        
-  87   1        
-  88   1          //---100ms------------------------------------------
-  89   1        if(u16_10ms_time_counter >= 5){                         //100ms
-  90   2          u16_10ms_time_counter = 0;
-  91   2          u16_50ms_time_counter ++; 
-  92   2          u8_flag_50ms = 1;
-  93   2        }
-  94   1        
-  95   1        
-  96   1        //---100ms------------------------------------------
-  97   1        if(u16_50ms_time_counter >= 2){                         //100ms
-  98   2          u16_50ms_time_counter = 0;
-  99   2          u16_100ms_time_counter ++;  
- 100   2          u8_flag_100ms = 1;
- 101   2        }
- 102   1        
- 103   1        
- 104   1        //---200ms------------------------------------------
- 105   1        if(u16_100ms_time_counter >= 2){                          //200ms
- 106   2          u16_100ms_time_counter = 0;
- 107   2          u16_200ms_time_counter ++;  
- 108   2          u8_flag_200ms = 1;
- 109   2        }
- 110   1        
- 111   1      //  //---500ms------------------------------------------
-C51 COMPILER V9.60.7.0   ISR                                                               04/15/2024 16:51:39 PAGE 3   
+  58          extern volatile bit b_test_cg;   // test chong giat
+  59          extern volatile bit b_reset_cg;  // reset chong giat
+  60          extern volatile uint8_t test_cg_cnt;
+  61          extern volatile uint8_t reset_cg_cnt;
+  62          
+  63          
+  64          void Timer3_ISR(void) interrupt 16        // Vector @  0x83
+  65          {
+  66   1        _push_(SFRS);
+  67   1        clr_T3CON_TF3;
+  68   1        u16_timer3_int_counter ++;  
+  69   1        u8_flag_200us = 1;
+  70   1        
+  71   1        //---1ms-------------------------------------------
+  72   1        if(u16_timer3_int_counter >= C_1MS_CNT_VALUE){            //1ms
+  73   2          u16_timer3_int_counter = 0; 
+  74   2          u16_1ms_timer_counter ++;
+  75   2          u8_flag_1ms = 1;
+  76   2        }
+  77   1        //---2ms-------------------------------------------
+  78   1          if(u16_1ms_timer_counter >= 2){                         //2ms
+  79   2          u16_1ms_timer_counter = 0;
+  80   2          u16_2ms_timer_counter ++; 
+  81   2          u8_flag_2ms = 1;      
+  82   2        }
+  83   1          
+  84   1        
+  85   1        //---10ms-------------------------------------------
+  86   1        if(u16_2ms_timer_counter >= 5){                         //10ms
+  87   2          u16_2ms_timer_counter = 0;
+  88   2          u16_10ms_time_counter ++; 
+  89   2          u8_flag_10ms = 1;     
+  90   2          
+  91   2                // test chong giat
+  92   2            if (b_test_cg == 1) {
+  93   3              if (test_cg_cnt < 17) {
+  94   4                lo_write_tonggle();
+  95   4                test_cg_cnt++;
+  96   4              } else {
+  97   4                b_test_cg = 0;
+  98   4                test_cg_cnt = 0;
+  99   4                lo_write_low();
+ 100   4              }
+ 101   3            }
+ 102   2            
+ 103   2            // reset chong giat
+ 104   2            if (b_reset_cg == 1) {
+ 105   3              if (reset_cg_cnt < 30) {
+ 106   4                reset_cg_cnt++;
+ 107   4                reset_lo_write_high();
+ 108   4              } else {
+ 109   4                b_reset_cg = 0;
+ 110   4                reset_cg_cnt = 0;
+ 111   4                reset_lo_write_low();
+C51 COMPILER V9.60.7.0   ISR                                                               04/16/2024 15:36:26 PAGE 3   
 
- 112   1      //  if(u16_100ms_time_counter >= 5){                          //500ms
- 113   1      //    u16_100ms_time_counter = 0;
- 114   1      //    u16_500ms_time_counter ++;  
- 115   1      //    u8_flag_500ms = 1;
- 116   1      //  }
- 117   1        
- 118   1        //---1s--------------------------------------------
- 119   1        if(u16_200ms_time_counter >= 5){                          //1s
- 120   2          u16_200ms_time_counter = 0;
- 121   2          u16_1s_time_counter ++; 
- 122   2          u8_flag_1s = 1;
- 123   2        }       
- 124   1          //---2s--------------------------------------------
- 125   1        if(u16_1s_time_counter >= 2){                             //2s
- 126   2          u16_1s_time_counter = 0;
- 127   2          u16_2s_time_counter ++; 
- 128   2          u8_flag_2s = 1;
- 129   2        } 
- 130   1        
- 131   1        count12ms++;
- 132   1        if (count12ms >= MAX_12MS_CNT) {
- 133   2          count12ms = 0;
- 134   2        }
- 135   1        if (b_triggered == 1) {
- 136   2          if (count12ms == pulse_trigger_off_cnt) {
- 137   3            ctr_triac_write_high();
- 138   3            b_triggered = 0;
- 139   3          }
- 140   2        }
- 141   1        
- 142   1        _pop_(SFRS);
- 143   1      }
- 144          
- 145          
- 146          // interrupt for ADC
- 147          
- 148          void ADC_ISR(void) interrupt 11  // Vector @  0x5B
- 149          {
- 150   1        _push_(SFRS);
- 151   1        clr_ADCCON0_ADCF;
- 152   1        u16_adc_value = adc_read();
- 153   1        u8_flag_adc = 1;
- 154   1        _pop_(SFRS);
- 155   1      }
- 156          
- 157          void Pin_INT_ISR(void) interrupt 7  // Vector @  0x3B
- 158          {
- 159   1        _push_(SFRS);
- 160   1        
- 161   1          // index pulse
- 162   1        if (triac_pulse_cnt < MAX_TRIAC_PULSE - 1) {
- 163   2          triac_pulse_cnt++;
- 164   2        } else {
- 165   2          triac_pulse_cnt = 0;
- 166   2      
- 167   2          if (additionInterval < MAX_ADDITION_INTERVAL - 1) {
- 168   3            additionInterval++;
- 169   3          } else {
- 170   3            additionInterval = 0;
- 171   3          }
- 172   2        }
- 173   1        
-C51 COMPILER V9.60.7.0   ISR                                                               04/15/2024 16:51:39 PAGE 4   
+ 112   4              }
+ 113   3            }
+ 114   2        }
+ 115   1        
+ 116   1        
+ 117   1          //---100ms------------------------------------------
+ 118   1        if(u16_10ms_time_counter >= 5){                         //100ms
+ 119   2          u16_10ms_time_counter = 0;
+ 120   2          u16_50ms_time_counter ++; 
+ 121   2          u8_flag_50ms = 1;
+ 122   2        }
+ 123   1        
+ 124   1        
+ 125   1        //---100ms------------------------------------------
+ 126   1        if(u16_50ms_time_counter >= 2){                         //100ms
+ 127   2          u16_50ms_time_counter = 0;
+ 128   2          u16_100ms_time_counter ++;  
+ 129   2          u8_flag_100ms = 1;
+ 130   2        }
+ 131   1        
+ 132   1        
+ 133   1        //---200ms------------------------------------------
+ 134   1        if(u16_100ms_time_counter >= 2){                          //200ms
+ 135   2          u16_100ms_time_counter = 0;
+ 136   2          u16_200ms_time_counter ++;  
+ 137   2          u8_flag_200ms = 1;
+ 138   2        }
+ 139   1        
+ 140   1      //  //---500ms------------------------------------------
+ 141   1      //  if(u16_100ms_time_counter >= 5){                          //500ms
+ 142   1      //    u16_100ms_time_counter = 0;
+ 143   1      //    u16_500ms_time_counter ++;  
+ 144   1      //    u8_flag_500ms = 1;
+ 145   1      //  }
+ 146   1        
+ 147   1        //---1s--------------------------------------------
+ 148   1        if(u16_200ms_time_counter >= 5){                          //1s
+ 149   2          u16_200ms_time_counter = 0;
+ 150   2          u16_1s_time_counter ++; 
+ 151   2          u8_flag_1s = 1;
+ 152   2        }       
+ 153   1          //---2s--------------------------------------------
+ 154   1        if(u16_1s_time_counter >= 2){                             //2s
+ 155   2          u16_1s_time_counter = 0;
+ 156   2          u16_2s_time_counter ++; 
+ 157   2          u8_flag_2s = 1;
+ 158   2        } 
+ 159   1        
+ 160   1        count12ms++;
+ 161   1        if (count12ms >= MAX_12MS_CNT) {
+ 162   2          count12ms = 0;
+ 163   2        }
+ 164   1        if (b_triggered == 1) {
+ 165   2          if (count12ms == pulse_trigger_off_cnt) {
+ 166   3            ctr_triac_write_high();
+ 167   3            b_triggered = 0;
+ 168   3          }
+ 169   2        }
+ 170   1        
+ 171   1        _pop_(SFRS);
+ 172   1      }
+ 173          
+C51 COMPILER V9.60.7.0   ISR                                                               04/16/2024 15:36:26 PAGE 4   
 
- 174   1          // update num_active_pulse_with_add
- 175   1        if (additionInterval < num_addition) {
- 176   2          num_active_pulse_with_add = num_active_pulse + 1;
- 177   2          if (num_active_pulse_with_add > 20) {
- 178   3            num_active_pulse_with_add = 20;
- 179   3          }
- 180   2        } else {
- 181   2          num_active_pulse_with_add = num_active_pulse;
- 182   2        }
- 183   1        
- 184   1        
- 185   1        if (u16NumActive > 0) 
- 186   1        {
- 187   2           if (triac_pulse_cnt < num_active_pulse_with_add)
- 188   2           {
- 189   3             ctr_triac_write_low();
- 190   3             b_triggered = 1;  // triac triggerd
- 191   3             pulse_trigger_off_cnt = count12ms;
- 192   3           }
- 193   2         }
- 194   1      
- 195   1        
- 196   1      //  u8_detect_zero++;
- 197   1        
- 198   1        PIF = 0;
- 199   1        _pop_(SFRS);
- 200   1      }
- 201          
- 202          
- 203          
- 204          void I2C_ISR(void) interrupt 6  // Vector @  0x3B
- 205          {
- 206   1        _push_(SFRS);
- 207   1        SFRS = 0;
- 208   1        if(I2CON & (1 << 3))
- 209   1        {
- 210   2          switch (I2STAT)
- 211   2          {
- 212   3               /* Bus error */
- 213   3            case 0x00: 
- 214   3              I2C_SET_STOP();
- 215   3              break;
- 216   3            
- 217   3              /* I2C start */
- 218   3            case 0x08: 
- 219   3              I2DAT = addSlaveAndRW;
- 220   3              I2C_CLEAR_START();  
- 221   3              I2C_CLEAR_SI();   
- 222   3              break;
- 223   3            
- 224   3            /* I2C repeat start */
- 225   3            case 0x10:  
- 226   3        //      I2C_SET_STOP(); 
- 227   3              break;
- 228   3            
- 229   3            /* Master Transmit Address ACK  */
- 230   3            case 0x18:
- 231   3              I2DAT = m_tx_data[0];     
- 232   3              break;
- 233   3            
- 234   3            /* Master Transmit Address NACK  */
- 235   3            case 0x20:
-C51 COMPILER V9.60.7.0   ISR                                                               04/15/2024 16:51:39 PAGE 5   
+ 174          
+ 175          // interrupt for ADC
+ 176          
+ 177          void ADC_ISR(void) interrupt 11  // Vector @  0x5B
+ 178          {
+ 179   1        _push_(SFRS);
+ 180   1        clr_ADCCON0_ADCF;
+ 181   1        u16_adc_value = adc_read();
+ 182   1        u8_flag_adc = 1;
+ 183   1        _pop_(SFRS);
+ 184   1      }
+ 185          
+ 186          void Pin_INT_ISR(void) interrupt 7  // Vector @  0x3B
+ 187          {
+ 188   1        _push_(SFRS);
+ 189   1        
+ 190   1          // index pulse
+ 191   1        if (triac_pulse_cnt < MAX_TRIAC_PULSE - 1) {
+ 192   2          triac_pulse_cnt++;
+ 193   2        } else {
+ 194   2          triac_pulse_cnt = 0;
+ 195   2      
+ 196   2          if (additionInterval < MAX_ADDITION_INTERVAL - 1) {
+ 197   3            additionInterval++;
+ 198   3          } else {
+ 199   3            additionInterval = 0;
+ 200   3          }
+ 201   2        }
+ 202   1        
+ 203   1          // update num_active_pulse_with_add
+ 204   1        if (additionInterval < num_addition) {
+ 205   2          num_active_pulse_with_add = num_active_pulse + 1;
+ 206   2          if (num_active_pulse_with_add > 20) {
+ 207   3            num_active_pulse_with_add = 20;
+ 208   3          }
+ 209   2        } else {
+ 210   2          num_active_pulse_with_add = num_active_pulse;
+ 211   2        }
+ 212   1        
+ 213   1        
+ 214   1        if (u16NumActive > 0) 
+ 215   1        {
+ 216   2           if (triac_pulse_cnt < num_active_pulse_with_add)
+ 217   2           {
+ 218   3             ctr_triac_write_low();
+ 219   3             b_triggered = 1;  // triac triggerd
+ 220   3             pulse_trigger_off_cnt = count12ms;
+ 221   3           }
+ 222   2         }
+ 223   1      
+ 224   1        
+ 225   1      //  u8_detect_zero++;
+ 226   1        
+ 227   1        PIF = 0;
+ 228   1        _pop_(SFRS);
+ 229   1      }
+ 230          
+ 231          
+ 232          
+ 233          void I2C_ISR(void) interrupt 6  // Vector @  0x3B
+ 234          {
+ 235   1        _push_(SFRS);
+C51 COMPILER V9.60.7.0   ISR                                                               04/16/2024 15:36:26 PAGE 5   
 
- 236   3              I2C_SET_STOP(); 
- 237   3              break;
- 238   3            
- 239   3            /* Master Transmit Data ACK  */
- 240   3            case 0x28:   
- 241   3              if(u8_cnt_data_tx == 0)
- 242   3              {
- 243   4                I2DAT = m_tx_data[1];
- 244   4                u8_cnt_data_tx = 1;
- 245   4              }
- 246   3              else if(u8_cnt_data_tx == 1)
- 247   3              {
- 248   4                I2DAT = m_tx_data[2];
- 249   4                u8_cnt_data_tx = 2;
- 250   4              }
- 251   3              else if(u8_cnt_data_tx == 2)
- 252   3              {
- 253   4                I2C_SET_STOP(); 
- 254   4                u8_cnt_data_tx = 0;
- 255   4                b_i2c_read_write = FLAG_READ;
- 256   4              }
- 257   3              break;
- 258   3            
- 259   3            /* Master Transmit Data NACK  */
- 260   3            case 0x30:
- 261   3        //      I2DAT = 0x55;
- 262   3              I2C_SET_STOP();
- 263   3              break;
- 264   3            
- 265   3            /* Master Arbitration Lost  */
- 266   3            case 0x38:
- 267   3              I2C_SET_STOP();
- 268   3              break;
- 269   3            
- 270   3            
- 271   3            
- 272   3            /* Master Receive Address ACK  */
- 273   3            case 0x40:
- 274   3              I2C_SET_AA();
- 275   3              break;
- 276   3            
- 277   3            /* Master Receive Address NACK  */
- 278   3            case 0x48:
- 279   3              I2C_SET_STOP();
- 280   3              I2C_SET_AA();
- 281   3              break;
- 282   3            
- 283   3            /* Master Receive Data ACK  */
- 284   3            case 0x50:
- 285   3              if(u8_cnt_data_rx == 0)
- 286   3              {
- 287   4                m_rx_data[0] = I2DAT;
- 288   4                u8_cnt_data_rx = 1;
- 289   4                I2C_SET_AA();
- 290   4              }
- 291   3              else if (u8_cnt_data_rx == 1)
- 292   3              {
- 293   4                m_rx_data[1] = I2DAT;
- 294   4                u8_cnt_data_rx = 0;
- 295   4                I2C_CLEAR_AA();
- 296   4              }
+ 236   1        SFRS = 0;
+ 237   1        if(I2CON & (1 << 3))
+ 238   1        {
+ 239   2          switch (I2STAT)
+ 240   2          {
+ 241   3               /* Bus error */
+ 242   3            case 0x00: 
+ 243   3              I2C_SET_STOP();
+ 244   3              break;
+ 245   3            
+ 246   3              /* I2C start */
+ 247   3            case 0x08: 
+ 248   3              I2DAT = addSlaveAndRW;
+ 249   3              I2C_CLEAR_START();  
+ 250   3              I2C_CLEAR_SI();   
+ 251   3              break;
+ 252   3            
+ 253   3            /* I2C repeat start */
+ 254   3            case 0x10:  
+ 255   3        //      I2C_SET_STOP(); 
+ 256   3              break;
+ 257   3            
+ 258   3            /* Master Transmit Address ACK  */
+ 259   3            case 0x18:
+ 260   3              I2DAT = m_tx_data[0];     
+ 261   3              break;
+ 262   3            
+ 263   3            /* Master Transmit Address NACK  */
+ 264   3            case 0x20:
+ 265   3              I2C_SET_STOP(); 
+ 266   3              break;
+ 267   3            
+ 268   3            /* Master Transmit Data ACK  */
+ 269   3            case 0x28:   
+ 270   3              if(u8_cnt_data_tx == 0)
+ 271   3              {
+ 272   4                I2DAT = m_tx_data[1];
+ 273   4                u8_cnt_data_tx = 1;
+ 274   4              }
+ 275   3              else if(u8_cnt_data_tx == 1)
+ 276   3              {
+ 277   4                I2DAT = m_tx_data[2];
+ 278   4                u8_cnt_data_tx = 2;
+ 279   4              }
+ 280   3              else if(u8_cnt_data_tx == 2)
+ 281   3              {
+ 282   4                I2C_SET_STOP(); 
+ 283   4                u8_cnt_data_tx = 0;
+ 284   4                b_i2c_read_write = FLAG_READ;
+ 285   4              }
+ 286   3              break;
+ 287   3            
+ 288   3            /* Master Transmit Data NACK  */
+ 289   3            case 0x30:
+ 290   3        //      I2DAT = 0x55;
+ 291   3              I2C_SET_STOP();
+ 292   3              break;
+ 293   3            
+ 294   3            /* Master Arbitration Lost  */
+ 295   3            case 0x38:
+ 296   3              I2C_SET_STOP();
  297   3              break;
-C51 COMPILER V9.60.7.0   ISR                                                               04/15/2024 16:51:39 PAGE 6   
+C51 COMPILER V9.60.7.0   ISR                                                               04/16/2024 15:36:26 PAGE 6   
 
  298   3            
- 299   3            /* Master Receive Data NACK  */
- 300   3            case 0x58:
- 301   3              m_rx_data[2] = I2DAT;
- 302   3              b_i2c_read_write = FLAG_WRITE;
- 303   3              b_flag_i2c_receive = 1;
- 304   3              I2C_SET_STOP();
- 305   3              I2C_SET_AA();
- 306   3              break;
- 307   3          }
- 308   2            // clear SI
- 309   2          I2C_CLEAR_SI();
- 310   2        }
- 311   1        _pop_(SFRS);
- 312   1      }
- 313          
- 314          
+ 299   3            
+ 300   3            
+ 301   3            /* Master Receive Address ACK  */
+ 302   3            case 0x40:
+ 303   3              I2C_SET_AA();
+ 304   3              break;
+ 305   3            
+ 306   3            /* Master Receive Address NACK  */
+ 307   3            case 0x48:
+ 308   3              I2C_SET_STOP();
+ 309   3              I2C_SET_AA();
+ 310   3              break;
+ 311   3            
+ 312   3            /* Master Receive Data ACK  */
+ 313   3            case 0x50:
+ 314   3              if(u8_cnt_data_rx == 0)
+ 315   3              {
+ 316   4                m_rx_data[0] = I2DAT;
+ 317   4                u8_cnt_data_rx = 1;
+ 318   4                I2C_SET_AA();
+ 319   4              }
+ 320   3              else if (u8_cnt_data_rx == 1)
+ 321   3              {
+ 322   4                m_rx_data[1] = I2DAT;
+ 323   4                u8_cnt_data_rx = 0;
+ 324   4                I2C_CLEAR_AA();
+ 325   4              }
+ 326   3              break;
+ 327   3            
+ 328   3            /* Master Receive Data NACK  */
+ 329   3            case 0x58:
+ 330   3              m_rx_data[2] = I2DAT;
+ 331   3              b_i2c_read_write = FLAG_WRITE;
+ 332   3              b_flag_i2c_receive = 1;
+ 333   3              I2C_SET_STOP();
+ 334   3              I2C_SET_AA();
+ 335   3              break;
+ 336   3          }
+ 337   2            // clear SI
+ 338   2          I2C_CLEAR_SI();
+ 339   2        }
+ 340   1        _pop_(SFRS);
+ 341   1      }
+ 342          
+ 343          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    969    ----
+   CODE SIZE        =   1032    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =     47    ----
    PDATA SIZE       =   ----    ----

@@ -137,11 +137,17 @@ void USER_PROGRAM() {
 	}
   	
   	time_check_test ++;
-  	f(time_check_test > 3)
+  	if(time_check_test > 3)
 	{
 		time_check_test = 5;
 	}
-			
+	
+	time_check_reset ++;
+	if(time_check_reset > 3)
+	{
+		time_check_reset = 5;
+	}		
+		
   	comm_timeout_cnt = 0;
   	b_flag_i2c_receive = 0;
   }  
@@ -334,15 +340,8 @@ void mode_test_program(void)
 	if(b_flag500msInTest == 1)
 	{
 		b_flag500msInTest = 0;
-/*		
-		time_check_test ++;
-		if(time_check_test > 1)
-		{
-			if(time_check_test > 2)
-			{
-				time_check_test = 5;
-			}
-*/		if(time_check_test > 2)
+
+		if(time_check_test > 2)
 		{	
 			if(machine_state & (1 << TESTING_CB_NOTIFY_BIT))
 			{
@@ -371,7 +370,7 @@ void mode_test_program(void)
 				set_buzzer_on_forever();
 //				set_buzzer_on(550);
 			}
-//		}
+		}
 	}
   
 }
@@ -431,6 +430,7 @@ void mode_power_program(void)
 	      		LED_UI_OFF();
 	      		temp_set = 0;
 	      		s_tx_data[1] = temp_set;
+	      		s_tx_data[2] = CRC8(s_tx_data, 2);
 	      	}
 	        b_flag_button = 0;
 	      }
@@ -453,17 +453,11 @@ void mode_power_off_program(void)
   {
 	b_flag500msInPowerOff = 0;
 	
-	time_check_reset ++;
-	if(time_check_reset > 1)
+
+	if(time_check_reset > 3)
 	{
-		if(time_check_reset > 2)
-		{
-			time_check_reset = 5;
-		}
-		
 		if(machine_state & (1 << TESTING_CB_NOTIFY_BIT))
 		{
-//			set_buzzer_on(550);
 			if(b_tonggle_E3_in_mode_reset)
 			{
 				LED_UI_ON();
@@ -583,7 +577,7 @@ void mode_power_on_program(void)
 		  set_buzzer_off_forever();
 		  b_tonggle_E3_in_mode_reset = 0;	
 		}
-		else if((machine_state & (1 << TESTING_CB_NOTIFY_BIT)) && (time_check_reset == 4))
+		else if((machine_state & (1 << TESTING_CB_NOTIFY_BIT)) && (time_check_reset == 5))
 		{
 			if(b_tonggle_E3_in_mode_reset)
 			{
@@ -605,7 +599,6 @@ void mode_power_on_program(void)
 			switch_temp_cnt = MAX_SWITCH_TEMP;
 			bit_7seg_temp_tonggle = 0;
 			
-//			set_buzzer_on(550);
 			set_buzzer_on_forever();
 		}
 		else if(machine_state & (1 << ADC_OUTPUT_ERR_BIT))
@@ -682,12 +675,6 @@ void mode_power_on_program(void)
 			b_switch_temp = 1;
 		    switch_temp_cnt = MAX_SWITCH_TEMP;
 		    bit_7seg_temp_tonggle = 0;
-		}
-		
-		time_check_reset ++;
-		if(time_check_reset > 2)
-		{
-			time_check_reset = 4;
 		}
 	}
 }

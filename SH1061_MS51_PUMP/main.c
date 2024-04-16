@@ -252,30 +252,6 @@ void main(void) {
 		{
 			u8_flag_10ms = 0;
 			
-			// test chong giat
-			if (b_test_cg == 1) {
-        if (test_cg_cnt < 17) {
-          lo_write_tonggle();
-          test_cg_cnt++;
-        } else {
-          b_test_cg = 0;
-          test_cg_cnt = 0;
-          lo_write_low();
-        }
-      }
-			
-			// reset chong giat
-      if (b_reset_cg == 1) {
-        if (reset_cg_cnt < 30) {
-          reset_cg_cnt++;
-          reset_lo_write_high();
-        } else {
-          b_reset_cg = 0;
-          reset_cg_cnt = 0;
-          reset_lo_write_low();
-        }
-      }
-			
 			if(b_flag_i2c_receive == 1)
 			{
 				if(m_rx_data[2] == CRC8(m_rx_data, 2))
