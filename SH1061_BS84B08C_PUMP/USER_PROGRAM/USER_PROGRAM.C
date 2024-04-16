@@ -120,9 +120,30 @@ void USER_PROGRAM() {
   		machine_state = data_handle[0];
   		u8_temp_fb = data_handle[1];
   	}
-  	b_flag_i2c_receive = 0;
   	
+	if(machine_state & (1 << TESTING_CB_NOTIFY_BIT))
+	{
+		if(s_tx_data[0]&(1 << CMD_TEST_BIT))
+		{
+			s_tx_data[0] &= ~(1 << CMD_TEST_BIT);
+		}
+	}
+	else
+	{
+		if(s_tx_data[0]&(1 << CMD_RESET_BIT))
+		{
+			s_tx_data[0] &= ~(1 << CMD_RESET_BIT);
+		}
+	}
+  	
+  	time_check_test ++;
+  	f(time_check_test > 3)
+	{
+		time_check_test = 5;
+	}
+			
   	comm_timeout_cnt = 0;
+  	b_flag_i2c_receive = 0;
   }  
   
   
@@ -170,14 +191,11 @@ void USER_PROGRAM() {
 		  	deviceMode = DEVICE_MODE_TEST;
 		  	b_tonggle_E2_in_mode_test = 0;
 		  	
-//		  	machine_state |= (1 << TESTING_CB_NOTIFY_BIT);
-		  	
 		  	time_check_test = 0;
 		  	
 		    break;
 		  case FLAG_BT_RESET:
 		  	
-		  	s_tx_data[0] &= ~(1 << CMD_TEST_BIT);
 		  	s_tx_data[0] |= (1 << CMD_RESET_BIT);
 		  	s_tx_data[2] = CRC8(s_tx_data, 2);
 		  	set_buzzer_on(100);
@@ -216,10 +234,7 @@ void USER_PROGRAM() {
   {
   	b_flag_500ms = 0;
   	
-  	s_tx_data[0] &= ~(1 << CMD_RESET_BIT);
-  	s_tx_data[2] = CRC8(s_tx_data, 2);
   }
-  
 }
 
 void USER_PROGRAM_HALT_PREPARE() {
@@ -291,7 +306,7 @@ void mode_start_program(void)
 		
 		LED_UI_OFF();
 		clear();
-        update();
+        update(); 
 		deviceMode = DEVICE_MODE_POWER;
 	}
 	
@@ -319,7 +334,7 @@ void mode_test_program(void)
 	if(b_flag500msInTest == 1)
 	{
 		b_flag500msInTest = 0;
-		
+/*		
 		time_check_test ++;
 		if(time_check_test > 1)
 		{
@@ -327,13 +342,15 @@ void mode_test_program(void)
 			{
 				time_check_test = 5;
 			}
-			
+*/		if(time_check_test > 2)
+		{	
 			if(machine_state & (1 << TESTING_CB_NOTIFY_BIT))
 			{
 				setLedELCB();
 				clearSeg12();
 		        update();
 		        set_buzzer_off_forever();
+		        
 			}
 			else 
 			{
@@ -354,7 +371,7 @@ void mode_test_program(void)
 				set_buzzer_on_forever();
 //				set_buzzer_on(550);
 			}
-		}
+//		}
 	}
   
 }
@@ -441,8 +458,9 @@ void mode_power_off_program(void)
 	{
 		if(time_check_reset > 2)
 		{
-			time_check_reset = 3;
+			time_check_reset = 5;
 		}
+		
 		if(machine_state & (1 << TESTING_CB_NOTIFY_BIT))
 		{
 //			set_buzzer_on(550);
@@ -542,13 +560,11 @@ void mode_power_on_program(void)
 		
 		if((machine_state == 0))
 		{
-			
-		  clearLedELCB();
-	   	  update();
 	   	  
 		  LED_UI_ON();
 		  if ((b_switch_temp == 1) && (switch_temp_cnt > 0)) {
             if (bit_7seg_temp_tonggle == 1) {
+              clearLedELCB();
               setSeg12(temp_set / 10, temp_set % 10);
               update();
               switch_temp_cnt--;
@@ -560,6 +576,7 @@ void mode_power_on_program(void)
           }
           if ((switch_temp_cnt == 0)) {
             setSeg12(u8_temp_fb/10, u8_temp_fb%10);
+            clearLedELCB();
             update();
           }
 		  
@@ -571,6 +588,7 @@ void mode_power_on_program(void)
 			if(b_tonggle_E3_in_mode_reset)
 			{
 				LED_UI_ON();
+				clearLedELCB();
 				setLedELCB();
 		        setSeg12(0x0E, 2);
 		        update();
@@ -597,24 +615,22 @@ void mode_power_on_program(void)
 			if(b_tonggle_E3_in_mode_reset)
 			{
 			  LED_UI_ON();
+			  clearLedELCB();
 	          setSeg12(0x0E, 1);
 	          update();
 			}
 			else
 			{
 			  LED_UI_OFF();
+			  clearLedELCB();
 			  clearSeg12();
 	          update();	
 			}
-			
-			clearLedELCB();
-	   	  	update();
 	   	  	
 			b_switch_temp = 1;
 		    switch_temp_cnt = MAX_SWITCH_TEMP;
 		    bit_7seg_temp_tonggle = 0;
 		    set_buzzer_on_forever();
-//		    set_buzzer_on(550);
 		}
 		else if(machine_state & (1 << FLOW_LOW_ERR_BIT))
 		{
@@ -624,18 +640,18 @@ void mode_power_on_program(void)
 			{
 			  set_buzzer_on(200);
 			  LED_UI_ON();
+			  clearLedELCB();
 	          setSeg12(0x0E, 3);
 	          update();
 			}
 			else
 			{
 			  LED_UI_OFF();	
+			  clearLedELCB();
 			  clearSeg12();
 	          update();	
 			}
 			
-			clearLedELCB();
-	   	  	update();
 	   	  	set_buzzer_off_forever();
 			b_switch_temp = 1;
 		    switch_temp_cnt = MAX_SWITCH_TEMP;
@@ -650,18 +666,18 @@ void mode_power_on_program(void)
 			{
 			  set_buzzer_on(200);
 			  LED_UI_ON();
+			  clearLedELCB();
 	          setSeg12(0x0E, 4);
 	          update();
 			}
 			else
 			{
 			  LED_UI_OFF();	
+			  clearLedELCB();
 			  clearSeg12();
 	          update();	
 			}
 			
-			clearLedELCB();
-	   	  	update();
 	   	  	set_buzzer_off_forever();
 			b_switch_temp = 1;
 		    switch_temp_cnt = MAX_SWITCH_TEMP;

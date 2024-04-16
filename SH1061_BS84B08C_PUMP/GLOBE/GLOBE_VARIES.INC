@@ -76,10 +76,10 @@
 #define Key1Threshold           16     ;;;;;//suggestion range 10 ~ 64
 #define Key2Threshold           16
 #define Key3Threshold           16
-#define Key4Threshold           40
+#define Key4Threshold           30
 ;;;;;//--
-#define Key5Threshold           40
-#define Key6Threshold           40
+#define Key5Threshold           30
+#define Key6Threshold           30
 #define Key7Threshold           16
 #define Key8Threshold           16
 ;;;;;//--

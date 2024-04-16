@@ -74,6 +74,11 @@ extern volatile bit b_flag_i2c_transmit;
 extern volatile uint8_t u8_i2c_time_out;
 
 
+volatile bit b_test_cg;   // test chong giat
+volatile bit b_reset_cg;  // reset chong giat
+volatile uint8_t test_cg_cnt;
+volatile uint8_t reset_cg_cnt;
+
 volatile uint8_t machine_state = 0;
 
 DeviceMode_t deviceMode = DEVICE_MODE_POWER;
@@ -247,6 +252,30 @@ void main(void) {
 		{
 			u8_flag_10ms = 0;
 			
+			// test chong giat
+			if (b_test_cg == 1) {
+        if (test_cg_cnt < 17) {
+          lo_write_tonggle();
+          test_cg_cnt++;
+        } else {
+          b_test_cg = 0;
+          test_cg_cnt = 0;
+          lo_write_low();
+        }
+      }
+			
+			// reset chong giat
+      if (b_reset_cg == 1) {
+        if (reset_cg_cnt < 30) {
+          reset_cg_cnt++;
+          reset_lo_write_high();
+        } else {
+          b_reset_cg = 0;
+          reset_cg_cnt = 0;
+          reset_lo_write_low();
+        }
+      }
+			
 			if(b_flag_i2c_receive == 1)
 			{
 				if(m_rx_data[2] == CRC8(m_rx_data, 2))
@@ -259,8 +288,8 @@ void main(void) {
 					{
 				
 						deviceMode = DEVICE_MODE_TEST;
-						b_test = 1;
-						u8_elcbCounter = 0;
+						b_test_cg = 1;
+						
 						ctr_outac_write_low();
 						
 					}
@@ -268,8 +297,7 @@ void main(void) {
 					{
 						deviceMode = DEVICE_MODE_POWER;
 						
-						b_reset = 1;
-						u8_restElcbCounter = 0;
+						b_reset_cg = 1;
 					}
 					
 					if(temp_set == 0)
@@ -299,39 +327,11 @@ void main(void) {
 					num_addition = 0;
 				
 					ctr_outac_write_low();
-						
-					if(b_test == 1)
-					{
-						u8_elcbCounter ++;
-						if(u8_elcbCounter < CYCLE_FOR_ELCB)
-						{
-							lo_write_tonggle();
-						}
-						else
-						{
-							b_test = 0;
-							lo_write_low();
-						}
-					}
 					
 					
 					break;
 				case DEVICE_MODE_POWER:
 					
-					if(b_reset == 1)
-					{
-						u8_restElcbCounter ++;
-						if(u8_restElcbCounter < CYCLE_FOR_RESET_ELCB)
-						{
-							reset_lo_write_high();
-						}
-						else
-						{
-							b_reset = 0;
-							reset_lo_write_low();
-							b_cg_in_mode_test = 0;
-						}
-					}
 					break;
 			}
 			

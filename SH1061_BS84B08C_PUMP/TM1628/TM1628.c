@@ -69,7 +69,7 @@ unsigned char max(unsigned char a, unsigned char b) {
 
 /*********** mid level  **********/
 void sendData(unsigned char addr, unsigned char data) {
-  _emi  = 0;
+//  _emi  = 0;
   // sendCommand(0x44);
   stb = 0;
   _nop();
@@ -77,15 +77,15 @@ void sendData(unsigned char addr, unsigned char data) {
   send(data);
   _nop();
   stb = 1;
-  _emi = 1;
+//  _emi = 1;
 }
 
 void sendCommand(unsigned char data) {
-  _emi  = 0;
+//  _emi  = 0;
   stb = 0;
   send(data);
   stb = 1;
-  _emi = 1;
+//  _emi = 1;
 }
 
 void setSeg12 (unsigned char num1, unsigned char num2) {
