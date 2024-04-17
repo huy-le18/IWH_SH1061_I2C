@@ -210,7 +210,7 @@ void main(void) {
 			switch (deviceMode)
 			{
 				case DEVICE_MODE_START:
-
+	
 					break;
 				case DEVICE_MODE_TEST:
 					if(int_os_read_state() == 0)
